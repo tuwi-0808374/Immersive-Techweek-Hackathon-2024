@@ -3313,6 +3313,67 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "PageTurn",
+            "id": "090d2c99-a1e9-4829-89df-00f7cc9f9a5f",
+            "actions": [
+                {
+                    "name": "PageTurn",
+                    "type": "Button",
+                    "id": "72a4d648-7ee0-4894-9091-b3620371310c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c0ff278c-eb3e-4642-bcf3-f93b88965478",
+                    "path": "<OculusTouchController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PageTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28f6b07f-a815-4c3e-a125-014c8b039d89",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PageTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1dbd224-6b53-4391-8a7b-888366ce80f5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PageTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85e27320-1be3-4935-acfe-eaa4e8b49403",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PageTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

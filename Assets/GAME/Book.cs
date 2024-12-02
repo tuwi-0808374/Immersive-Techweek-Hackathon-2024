@@ -1,9 +1,22 @@
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Book : MonoBehaviour
 {
+
+    public InputActionAsset inputActions;
+    private InputAction primaryButtonAction;
+    Vector3 startPos;
+    Quaternion startRot;
+    public GameObject bookOpen;
+    public GameObject bookClose;
+
     public List<Texture2D> pages = new List<Texture2D>();
 
     // The Renderer component (MeshRenderer, etc.) with the material we want to change
@@ -16,9 +29,18 @@ public class Book : MonoBehaviour
 
     public bool IsHolding { get => isHolding; set => isHolding = value; }
 
+    bool wait = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startPos = transform.position;
+        startRot = transform.rotation;
+
+
+        primaryButtonAction = inputActions.FindAction("PageTurn/PageTurn");
+        primaryButtonAction.Enable();
+
         // Check if targetRenderer is assigned, otherwise, try to get it automatically
         if (targetRenderer == null)
         {
@@ -33,16 +55,32 @@ public class Book : MonoBehaviour
         }
     }
 
+    public void ResetPosRot()
+    {
+        transform.position = startPos;
+        transform.rotation = startRot;  
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (IsHolding && OVRInput.Get(OVRInput.Button.One))
+
+        if (isHolding && primaryButtonAction.IsPressed())
         {
-            Debug.Log("A button pressed");
-            ChangePage();
+            if (!wait)
+            {
+                wait = true;
+                ChangePage();
+                Invoke("Wait", .5f);
+            }
         }
+
     }
 
+    public void Wait()
+    {
+        wait = false;
+    }
 
     private void ChangePage()
     {
@@ -74,6 +112,20 @@ public class Book : MonoBehaviour
             {
                 Debug.LogWarning("The material does not have a _BaseMap property.");
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Floor"))
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.angularVelocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
+            ResetPosRot();
+            bookOpen.SetActive(false);
+            bookClose.SetActive(true);
+            Debug.Log("book hit floor");
         }
     }
 }
