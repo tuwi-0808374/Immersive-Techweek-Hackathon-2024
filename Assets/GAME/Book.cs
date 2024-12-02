@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR;
@@ -12,10 +13,13 @@ public class Book : MonoBehaviour
 
     public InputActionAsset inputActions;
     private InputAction primaryButtonAction;
+    private InputAction secondaryButtonAction;
     Vector3 startPos;
     Quaternion startRot;
     public GameObject bookOpen;
     public GameObject bookClose;
+    public UnityEvent pressB;
+    public UnityEvent pressA;
 
     public List<Texture2D> pages = new List<Texture2D>();
 
@@ -38,8 +42,10 @@ public class Book : MonoBehaviour
         startRot = transform.rotation;
 
 
-        primaryButtonAction = inputActions.FindAction("PageTurn/PageTurn");
+        primaryButtonAction = inputActions.FindAction("GAME/primary");
         primaryButtonAction.Enable();
+        secondaryButtonAction = inputActions.FindAction("GAME/secondary");
+        secondaryButtonAction.Enable();
 
         // Check if targetRenderer is assigned, otherwise, try to get it automatically
         if (targetRenderer == null)
@@ -70,11 +76,23 @@ public class Book : MonoBehaviour
             if (!wait)
             {
                 wait = true;
-                ChangePage();
+                //ChangePage();
+                pressA.Invoke();
                 Invoke("Wait", .5f);
+                Debug.Log("a");
             }
         }
 
+        if (isHolding && secondaryButtonAction.IsPressed())
+        {
+            if (!wait)
+            {
+                wait = true;
+                Invoke("Wait", .5f);
+                pressB.Invoke();
+                Debug.Log("b");
+            }
+        }
     }
 
     public void Wait()
@@ -82,7 +100,7 @@ public class Book : MonoBehaviour
         wait = false;
     }
 
-    private void ChangePage()
+    public void ChangePage()
     {
         // Ensure we have pages in the list
         if (pages.Count == 0)

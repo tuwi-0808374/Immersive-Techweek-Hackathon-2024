@@ -3315,16 +3315,25 @@
             ]
         },
         {
-            "name": "PageTurn",
+            "name": "GAME",
             "id": "090d2c99-a1e9-4829-89df-00f7cc9f9a5f",
             "actions": [
                 {
-                    "name": "PageTurn",
+                    "name": "primary",
                     "type": "Button",
                     "id": "72a4d648-7ee0-4894-9091-b3620371310c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "secondary",
+                    "type": "Button",
+                    "id": "c6abdc1e-b108-4c35-89e9-f25309f7e452",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -3336,40 +3345,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PageTurn",
+                    "action": "primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "28f6b07f-a815-4c3e-a125-014c8b039d89",
-                    "path": "",
+                    "id": "5f8e2eb8-dfd8-428d-ad13-754d0eecda8c",
+                    "path": "<OculusTouchController>/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PageTurn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d1dbd224-6b53-4391-8a7b-888366ce80f5",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PageTurn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "85e27320-1be3-4935-acfe-eaa4e8b49403",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PageTurn",
+                    "action": "secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
