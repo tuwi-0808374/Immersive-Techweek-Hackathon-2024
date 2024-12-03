@@ -71,6 +71,11 @@ public class Book : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (seedModel != null && seedModel.activeInHierarchy)
+        {
+            return;
+        }
+
 
         if (isHolding && primaryButtonAction.IsPressed())
         {
@@ -88,12 +93,13 @@ public class Book : MonoBehaviour
         {
             if (!wait)
             {
+                Debug.Log("b");
                 wait = true;
                 Invoke("Wait", .5f);
 
                 if (bookIsSeed)
                 {
-                    if (!seedModel.activeInHierarchy)
+                    if (seedModel != null && !seedModel.activeInHierarchy)
                     {
                         seedModel.SetActive(true);
                         bookOpen.SetActive(false);
@@ -108,7 +114,7 @@ public class Book : MonoBehaviour
                 }
 
                 pressB.Invoke();
-                Debug.Log("b");
+  
                 
             }
         }
@@ -163,6 +169,7 @@ public class Book : MonoBehaviour
             bookOpen.SetActive(false);
             bookClose.SetActive(true);
             Debug.Log("book hit floor");
+            seedModel.SetActive(false);
         }
     }
 }

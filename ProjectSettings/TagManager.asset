@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Anchor
   - Floor
+  - CinemachineTarget
+  - Character
+  - SenderTMP
+  - Seed
+  - Water
   layers:
   - Default
   - TransparentFX
