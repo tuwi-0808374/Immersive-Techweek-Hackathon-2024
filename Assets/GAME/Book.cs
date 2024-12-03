@@ -36,6 +36,8 @@ public class Book : MonoBehaviour
 
     bool wait = false;
 
+    //bool seedOut = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -171,5 +173,16 @@ public class Book : MonoBehaviour
             Debug.Log("book hit floor");
             seedModel.SetActive(false);
         }
+    }
+
+    public void HoldBook()
+    {
+        if (seedModel != null && seedModel.activeInHierarchy)
+        {
+            return;
+        }
+        IsHolding = true;
+        bookOpen.SetActive(true);
+        bookClose.SetActive(false);
     }
 }
