@@ -10,7 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Book : MonoBehaviour
 {
-
+    public bool bookIsSeed = false;
     public InputActionAsset inputActions;
     private InputAction primaryButtonAction;
     private InputAction secondaryButtonAction;
@@ -18,6 +18,7 @@ public class Book : MonoBehaviour
     Quaternion startRot;
     public GameObject bookOpen;
     public GameObject bookClose;
+    public GameObject seedModel;
     public UnityEvent pressB;
     public UnityEvent pressA;
 
@@ -89,8 +90,26 @@ public class Book : MonoBehaviour
             {
                 wait = true;
                 Invoke("Wait", .5f);
+
+                if (bookIsSeed)
+                {
+                    if (!seedModel.activeInHierarchy)
+                    {
+                        seedModel.SetActive(true);
+                        bookOpen.SetActive(false);
+                        bookClose.SetActive(false);
+                    }
+                    else
+                    {
+
+                    }
+
+                    return;
+                }
+
                 pressB.Invoke();
                 Debug.Log("b");
+                
             }
         }
     }
