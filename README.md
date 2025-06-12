@@ -2,7 +2,7 @@
 
 https://github.com/user-attachments/assets/59492711-42fc-4733-96f3-09163fe17662
 
-<img src="https://github.com/user-attachments/assets/058e9011-fa56-46d9-83db-f6f8c16b77cb" width="600">
+<img src="https://github.com/user-attachments/assets/058e9011-fa56-46d9-83db-f6f8c16b77cb" width="auto">
 
 ## Overzicht
 Dit repository bevat een VR-prototype, ontwikkeld tijdens de Immersive Techweek Hackathon 2024, voor de Meta Quest VR-headset. Gemaakt in Unity, biedt het een interactieve bibliotheek waarin gebruikers boeken kunnen lezen plus VR-specifieke functies zoals zaadplanten, geanimeerde plantenlevenscycli en een virtuele bibliothecaris.
